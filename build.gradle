@@ -1,0 +1,35 @@
+import org.apache.tools.ant.filters.*
+
+plugins {
+    id 'org.jetbrains.kotlin.jvm' version '1.2.51'
+}
+
+group 'app.jittapan'
+version '0.0.1-SNAPSHOT'
+
+repositories {
+    maven { url = 'https://hub.spigotmc.org/nexus/content/repositories/snapshots/' }
+    maven { url = 'https://oss.sonatype.org/content/repositories/snapshots' }
+    jcenter()
+}
+
+dependencies {
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8"
+    compileOnly 'org.spigotmc:spigot-api:1.13.1-R0.1-SNAPSHOT'
+    compileOnly 'org.bukkit:bukkit:1.13.1-R0.1-SNAPSHOT'
+}
+
+compileKotlin {
+    kotlinOptions.jvmTarget = "1.8"
+}
+compileTestKotlin {
+    kotlinOptions.jvmTarget = "1.8"
+}
+
+processResources {
+    filter ReplaceTokens, tokens: [
+            "plugin.name": project.property("plugin.name"),
+            "plugin.version": project.property("plugin.version"),
+            "plugin.mainclass": project.property("plugin.mainclass")
+    ]
+}

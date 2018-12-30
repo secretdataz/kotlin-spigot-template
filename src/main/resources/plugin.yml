@@ -1,0 +1,6 @@
+name: @plugin.name@
+main: @plugin.mainclass@
+version: @plugin.version@
+author: secretdataz
+website: https://jittapan.app
+api-version: 1.13
